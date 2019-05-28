@@ -1,0 +1,13 @@
+pluginManagement {
+	repositories {
+		maven {
+			url = 'https://nexus.ssii.com/repository/maven-public/'
+		}
+	}
+}
+
+rootProject.name = 'demo-k8s'
+
+include(':config-server')
+include(':eureka-server')
+include(':zipkin-server')

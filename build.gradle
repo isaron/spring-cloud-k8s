@@ -1,0 +1,29 @@
+allprojects {
+    group = 'com.ssii.rdp.cloudk8s'
+    version = '1.0.0'
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'maven-publish'
+
+    repositories {
+        maven {
+			url = 'https://nexus.ssii.com/repository/maven-public/'
+		}
+    }
+
+    sourceCompatibility = '1.8'
+
+    publishing {
+        publications {
+            maven(MavenPublication) {
+                from(components.java)
+            }
+        }
+    }
+
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
+    }
+}
