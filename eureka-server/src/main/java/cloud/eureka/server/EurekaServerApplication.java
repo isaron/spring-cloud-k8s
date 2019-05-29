@@ -1,4 +1,4 @@
-package cloud.eureka.server;
+package com.ssii.rdp.cloudk8s.eureka.server;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
