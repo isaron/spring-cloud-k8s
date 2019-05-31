@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: config-service
+  labels:
+    app: config-service
+  namespace: spring-cloud    
+spec:
+  clusterIP: None
+  ports:
+  - port: 8760
+    protocol: TCP
+    targetPort: 8760
+  selector:
+    app: config
+  type: ClusterIP

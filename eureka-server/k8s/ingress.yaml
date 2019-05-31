@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: eureka
+  labels:
+    app: eureka
+  namespace: spring-cloud    
+spec:
+  # loadBalancerIP: 172.30.80.110 
+  ports:
+  - port: 8761
+    protocol: TCP
+    targetPort: 8761
+  selector:
+    app: eureka
+  type: LoadBalancer

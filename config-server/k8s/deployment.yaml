@@ -1,0 +1,47 @@
+apiVersion: apps/v1beta1
+kind: StatefulSet
+metadata:
+  name: config
+spec:
+  selector:
+    matchLabels:
+      app: config
+  serviceName: "config-service"
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: config
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - env:
+        - name: MY_NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: MY_POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: MY_POD_NAMESPACE # 传入当前命名空间
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: MY_POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+        - name: MY_IN_SERVICE_NAME # 因为pod 通过域名互相访问，需要使用headless 服务名称
+          value: config-service
+        - name: CONFIG_APPLICATION_NAME
+          value: "config"
+        - name: CONFIG_REPLICAS
+          value: "1"
+        image:  containers.ssii.com/springcloud/config:v1
+        imagePullPolicy: IfNotPresent
+        imagePullSecret: nexus-docker
+        name: config-container
+        ports:
+        - containerPort: 8760
+          protocol: TCP

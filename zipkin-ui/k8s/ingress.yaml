@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: zipkin
+  labels:
+    app: zipkin
+  namespace: spring-cloud    
+spec:
+  # loadBalancerIP: 172.30.80.110 
+  ports:
+  - port: 8769
+    protocol: TCP
+    targetPort: 8769
+  selector:
+    app: zipkin
+  type: LoadBalancer

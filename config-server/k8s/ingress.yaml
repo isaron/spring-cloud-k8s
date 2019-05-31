@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: config
+  labels:
+    app: config
+  namespace: spring-cloud    
+spec:
+  # loadBalancerIP: 172.30.80.110 
+  ports:
+  - port: 8760
+    protocol: TCP
+    targetPort: 8760
+  selector:
+    app: config
+  type: LoadBalancer

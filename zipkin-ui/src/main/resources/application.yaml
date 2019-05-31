@@ -1,0 +1,58 @@
+server:
+  port: 8769
+#spring cloud config
+config:
+  server:
+    instance:
+      hostname: configserver.ssii.com
+spring:
+  cloud:
+    config:
+      uri: http://127.0.0.1:${config.port:8760}
+      name: cloud-config
+      profile: ${config.profile:dev}
+#service name config
+  application:
+    name: zipkin-ui
+#spring profiles
+  profiles:
+    active: dev
+
+  datasource:
+    schema: classpath:/mysql_init.sql
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://localhost:3306/zipkin
+    username: root
+    password: root
+    initialize: true
+    continueOnError: true
+
+#   sleuth:
+#     enabled: false
+
+#   rabbitmq:
+#     host: localhost
+#     port: 5672
+#     username: guest
+#     password: guest
+
+eureka:
+  instance:
+    hostname: eureka.ssii.com
+  client:
+    serviceUrl:
+      defaultZone: http://eureka.ssii.com:8761/eureka/
+
+# zipkin config
+zipkin:
+  storage:
+    type: mysql
+
+info: #/info请求的显示信息
+  app: 
+    name: ${spring.application.name}
+    version: 1.0.0
+  build: 
+    artifactId: @project.artifactId@
+    version: @project.version@

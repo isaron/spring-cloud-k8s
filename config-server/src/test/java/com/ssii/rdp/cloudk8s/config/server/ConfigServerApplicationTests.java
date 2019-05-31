@@ -1,4 +1,4 @@
-package com.ssii.rdp.demok8s;
+package com.ssii.rdp.cloudk8s.config.server;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class DemoK8sApplicationTests {
+public class ConfigServerApplicationTests {
 
 	@Test
 	public void contextLoads() {

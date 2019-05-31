@@ -1,6 +1,6 @@
 plugins {
 	id 'org.springframework.boot' version '2.1.5.RELEASE'
-	// id 'java'
+	id 'java'
 }
 
 apply plugin: 'io.spring.dependency-management'
@@ -48,4 +48,4 @@ dependencyManagement {
 	}
 }
 
-description = 'zipkin-ui'
+description = 'eureka-server'
